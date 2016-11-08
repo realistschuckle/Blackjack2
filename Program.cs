@@ -84,6 +84,7 @@ namespace Blackjack2
             Console.Clear();
             Console.WriteLine("The house has " + house.Value);
             Console.WriteLine("You have " + player.Value);
+            Console.WriteLine(player);
             Console.WriteLine("Would you like another card? (yes or no)");
             string humanInput = Console.ReadLine();
             bool playerWantsAnotherCard = humanInput.ToLower() == "yes";

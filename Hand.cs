@@ -1,10 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Blackjack2
 {
     public class Hand
     {
         private int total;
+        private List<Card> cards;
+
+        public Hand()
+        {
+            cards = new List<Card>();
+        }
 
         public bool HasTwentyOne
         {
@@ -29,6 +36,17 @@ namespace Blackjack2
         public void AddToHand(Card card)
         {
             total += card.Value;
+            cards.Add(card);
+        }
+
+        public override string ToString()
+        {
+            string s = "";
+            foreach(Card c in cards)
+            {
+                s += $"  {c}{Environment.NewLine}";
+            }
+            return s;
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿namespace Blackjack2
 {
-    public class Card
+    public abstract class Card
     {
-        private int rank;
         private Suit suit;
 
-        public Card(Suit suit, int rank)
+        public Card(Suit suit)
         {
             this.suit = suit;
-            this.rank = rank;
         }
 
-        public int Value
+        public Suit Suit
         {
-            get { return rank; }
+            get { return suit; }
         }
+
+        public abstract int Value { get; }
     }
 }

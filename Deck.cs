@@ -12,14 +12,23 @@ namespace Blackjack2
         {
             cards = new List<Card>();
 
+            string[] faces = new string[] { "Jack", "Queen", "King" };
             Suit[] suits = new Suit[] { Suit.Hearts, Suit.Spades, Suit.Diamonds, Suit.Clubs };
             for (int i = 0; i < suits.Length; i += 1)
             {
                 for (int rank = 2; rank < 11; rank += 1)
                 {
-                    Card newCard = new Card(suits[i], rank);
+                    Card newCard = new NumberCard(suits[i], rank);
                     cards.Add(newCard);
                 }
+
+                for (int faceIndex = 0; faceIndex < faces.Length; faceIndex += 1)
+                {
+                    Card newCard = new FaceCard(suits[i], faces[faceIndex]);
+                    cards.Add(newCard);
+                }
+
+                cards.Add(new AceCard(suits[i]));
             }
         }
 

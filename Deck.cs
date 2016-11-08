@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Blackjack2
 {
@@ -21,9 +22,14 @@ namespace Blackjack2
             }
         }
 
+        public Card TakeACard()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Shuffle()
         {
-            
+            throw new NotImplementedException();
         }
     }
 }

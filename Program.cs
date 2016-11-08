@@ -28,21 +28,16 @@ namespace Blackjack2
             player.AddToHand(deck.TakeACard());
             house.AddToHand(deck.TakeACard());
 
-            // Check if the player wants or can keep going
-            bool playerWantsAnotherCard = KeepGoing(player);
-
-            // while the player doesn't hold
-            while (playerWantsAnotherCard)
+            // while the can and wants to keep getting another card
+            while (KeepGoing(player, house))
             {
                 // deal the player a card
                 player.AddToHand(deck.TakeACard());
-
-                // Check if the player wants or can keep going
-                playerWantsAnotherCard = KeepGoing(player);
             }
 
-            // while the house's hand is less than 17
-            while (house.IsTotalLessThan17)
+            // while the player hasn't busted and
+            // the house's hand is less than 17
+            while (!player.IsBust && house.IsTotalLessThan17)
             {
                 // deal the house a card
                 house.AddToHand(deck.TakeACard());
@@ -54,6 +49,10 @@ namespace Blackjack2
             if (house.IsBust)
             {
                 Console.WriteLine("HUMANS WIN!");
+            }
+            else if (player.IsBust)
+            {
+                Console.WriteLine("HUMANITY GOES BUST!");
             }
             else if (house.Value == player.Value)
             {
@@ -67,9 +66,13 @@ namespace Blackjack2
             {
                 Console.WriteLine("YOU WON!");
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Press ENTER to exit...");
+            Console.ReadLine();
         }
 
-        private static bool KeepGoing(Hand player)
+        private static bool KeepGoing(Hand player, Hand house)
         {
             // Check the status of the hand
             if (player.HasTwentyOne || player.IsBust)
@@ -78,6 +81,9 @@ namespace Blackjack2
             }
 
             // Prompt for additional card
+            Console.Clear();
+            Console.WriteLine("The house has " + house.Value);
+            Console.WriteLine("You have " + player.Value);
             Console.WriteLine("Would you like another card? (yes or no)");
             string humanInput = Console.ReadLine();
             bool playerWantsAnotherCard = humanInput.ToLower() == "yes";

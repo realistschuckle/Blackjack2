@@ -4,10 +4,13 @@ namespace Blackjack2
 {
     public class Hand
     {
+        private int total;
+
         public bool HasTwentyOne
         {
             get { return Value == 21; }
         }
+
         public bool IsBust
         {
             get { return Value > 21; }
@@ -20,12 +23,12 @@ namespace Blackjack2
 
         public int Value
         {
-            get { throw new NotImplementedException(); }
+            get { return total; }
         }
 
         public void AddToHand(Card card)
         {
-            throw new NotImplementedException();
+            total += card.Value;
         }
     }
 }
